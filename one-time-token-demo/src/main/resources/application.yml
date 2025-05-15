@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: one-time-token-demo
+  datasource:
+    url: jdbc:h2:mem:onetimetoken
+  sql:
+    init:
+      platform: h2
+  mail:
+    port: 1025
+    host: localhost
+  docker:
+    compose:
+      readiness:
+        wait: never # for some reason it does not detect whether maildev is ready
+      file: classpath:compose.yml

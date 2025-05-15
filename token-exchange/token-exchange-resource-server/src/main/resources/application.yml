@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: token-exchange-resource-server
+server:
+  port: 9094

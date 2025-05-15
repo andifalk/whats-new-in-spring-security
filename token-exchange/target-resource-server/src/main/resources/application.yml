@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: target-resource-server
+server:
+  port: 9095

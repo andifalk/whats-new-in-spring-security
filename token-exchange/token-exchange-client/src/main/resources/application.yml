@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: token-exchange-client
+server:
+  port: 9093

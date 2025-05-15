@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: authorization-features
+  jpa:
+    open-in-view: false
+  datasource:
+    url: jdbc:h2:mem:authorization-features
+logging:
+  level:
+    org.springframework.security: debug

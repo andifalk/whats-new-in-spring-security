@@ -24,15 +24,15 @@
             <plugins>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.2.5</version>
+                    <version>3.5.3</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>3.2.5</version>
+                    <version>3.5.3</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.13.0</version>
+                    <version>3.14.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
@@ -45,21 +45,32 @@
     <modules>
         <module>how-spring-security-works</module>
         <module>spring-authorization-server</module>
-        <module>latest-spring-security-features</module>
+        <module>authorization-features</module>
+        <module>one-time-token-demo</module>
         <module>passkeys-demo</module>
+        <module>token-exchange/token-exchange-client</module>
+        <module>token-exchange/token-exchange-resource-server</module>
+        <module>token-exchange/target-resource-server</module>
     </modules>
 
     <repositories>
         <repository>
-            <id>Spring Milestones</id>
-            <url>https://repo.spring.io/milestone/</url>
-        </repository>
-        <repository>
-            <id>Spring Snapshots</id>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
-            <url>https://repo.spring.io/snapshot/</url>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
