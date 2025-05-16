@@ -1,6 +1,7 @@
 package org.example.authorizationserver.config;
 
 import jakarta.annotation.Nullable;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.oauth2.server.authorization.context.AuthorizationServerContext;
 import org.springframework.security.oauth2.server.authorization.context.AuthorizationServerContextHolder;
 import org.springframework.stereotype.Component;
@@ -10,6 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+@Profile("multi-tenancy")
 @Component
 public class TenantPerIssuerComponentRegistry {
     private final ConcurrentMap<String, Map<Class<?>, Object>> registry = new ConcurrentHashMap<>();

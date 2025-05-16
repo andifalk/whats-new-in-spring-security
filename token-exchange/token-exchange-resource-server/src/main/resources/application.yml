@@ -1,5 +1,26 @@
 spring:
   application:
     name: token-exchange-resource-server
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000
+      client:
+        registration:
+          messaging-client-token-exchange:
+            provider: spring
+            client-id: token-exchange-client
+            client-secret: exchange_secret
+            authorization-grant-type: urn:ietf:params:oauth:grant-type:token-exchange
+            scope:
+              - message.read
+              - message.write
+            client-authentication-method: client_secret_basic
+            client-name: messaging-client-token-exchange
+        provider:
+          spring:
+            issuer-uri: http://localhost:9000
+
 server:
-  port: 9094
+  port: 9091

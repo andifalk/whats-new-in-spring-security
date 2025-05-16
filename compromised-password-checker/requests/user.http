@@ -1,0 +1,31 @@
+### GET request to get info for current authenticated user
+GET http://localhost:8080/me
+Authorization: Basic user password
+
+### POST request to check for compromised password
+POST http://localhost:8080/check-password
+Content-Type: application/json
+
+{
+  "password": "password"
+}
+
+### POST request to register new user
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "username": "myuser",
+  "password": "querty123456",
+  "email": "myuser@example.com"
+}
+
+### POST request to change password
+POST http://localhost:8080/change-password
+Authorization: Basic user password
+Content-Type: application/json
+
+{
+  "oldPassword": "password",
+  "newPassword": "password123456"
+}

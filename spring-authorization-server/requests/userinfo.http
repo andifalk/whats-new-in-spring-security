@@ -1,7 +1,22 @@
-### GET request to user info
-GET http://localhost:9000/issuer1/userinfo
+### GET request to user info (single tenant)
+GET {{auth-server-url}}/userinfo
+Authorization: Bearer {{$auth.token("standard")}}
+
+### GET request to user info (multitenant)
+GET {{auth-server-url}}/issuer1/userinfo
 Authorization: Bearer {{$auth.token("issuer1")}}
 
-###
-GET http://localhost:9000/issuer2/userinfo
+### GET request to user info (multitenant)
+GET {{auth-server-url}}/issuer2/userinfo
 Authorization: Bearer {{$auth.token("issuer2")}}
+
+### Token exchange request
+POST {{auth-server-url}}/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic token-exchange-client exchange_secret
+
+grant_type = urn:ietf:params:oauth:grant-type:token-exchange &
+subject_token = {{$auth.token("standard")}} &
+subject_token_type = urn:ietf:params:oauth:token-type:access_token &
+requested_token_type = urn:ietf:params:oauth:token-type:access_token &
+scope = message.read message.write

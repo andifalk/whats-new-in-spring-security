@@ -1,0 +1,4 @@
+### GET request to example client
+GET http://localhost:8080/api/hello
+
+###

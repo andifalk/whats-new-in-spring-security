@@ -5,10 +5,10 @@ This repo contains demo code to show how spring security works behind the scenes
 * Spring Security 6.3 & 6.4 & 6.5
 * Spring Authorization Server 1.3 & 1.4 & 1.5
 
-## Table of Contents
+## Demos
 
 * [How Spring Security Works](/how-spring-security-works/README.md)
-* [Compromised Password Check](/compromised-password-check/README.md)
+* [Compromised Password Check](/compromised-password-checker/README.md)
 * [Authorization Features](/latest-spring-security-features/README.md)
 * [One-Time Token Demo](one-time-token-demo/README.md)
 * [Passkeys Demo](passkeys-demo/README.md)

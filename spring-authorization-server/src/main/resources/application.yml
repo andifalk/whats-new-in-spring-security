@@ -3,3 +3,12 @@ spring:
     name: spring-authorization-server
 server:
   port: 9000
+logging:
+  level:
+    org:springframework.security: trace
+    org:
+      springframework:
+        security:
+          oauth2:
+            server:
+              authorization: trace

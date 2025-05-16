@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: compromised-password-checker
+logging:
+  level:
+    org.springframework.security: debug

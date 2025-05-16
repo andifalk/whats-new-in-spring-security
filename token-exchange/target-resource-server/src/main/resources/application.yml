@@ -1,5 +1,12 @@
 spring:
   application:
     name: target-resource-server
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000
+          audiences: http://localhost:9092/api/messages
+
 server:
-  port: 9095
+  port: 9092
