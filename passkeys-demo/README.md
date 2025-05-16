@@ -36,7 +36,7 @@ mkcert -p12-file server-keystore.p12 -pkcs12 127.0.0.1 localhost server.local
 
 Just start the application in your IDE or using the maven spring boot plugin.
 Now navigate your browser to https://server.local:8443.
-First, you need to log in with the user credentials `user/secret`.
+First, you need to log in with the user credentials `user/password`.
 Now you should see a welcome page with the following links:
 
 * Register: Click on this link to register your user for a Passkey (using Keychain on Mac, Browser, 1Password, etc.)

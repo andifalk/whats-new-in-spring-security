@@ -43,7 +43,7 @@ public class WebSecurityConfiguration {
                 User
                         .builder()
                         .username("user")
-                        .password("secret")
+                        .password("password")
                         .passwordEncoder(passwordEncoder()::encode)
                         .roles("USER")
                         .build()
