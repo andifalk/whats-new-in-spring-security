@@ -7,4 +7,5 @@ spring:
     url: jdbc:h2:mem:authorization-features
 logging:
   level:
-    org.springframework.security: debug
+    org.springframework.security: trace
+    com.webauthn4j: trace

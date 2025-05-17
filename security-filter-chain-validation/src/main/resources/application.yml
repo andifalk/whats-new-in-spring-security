@@ -1,0 +1,12 @@
+spring:
+  application:
+    name:
+      security-filter-chain-validation
+logging:
+  level:
+    org.springframework.security: debug
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

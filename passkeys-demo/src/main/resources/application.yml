@@ -19,3 +19,8 @@ server:
   http2:
     enabled: true
   address: server.local
+
+logging:
+  level:
+    org.springframework.security: trace
+    com.webauthn4j: trace

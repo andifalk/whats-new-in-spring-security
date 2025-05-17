@@ -51,6 +51,8 @@
         <module>token-exchange/token-exchange-client</module>
         <module>token-exchange/token-exchange-resource-server</module>
         <module>token-exchange/target-resource-server</module>
+        <module>compromised-password-checker</module>
+        <module>security-filter-chain-validation</module>
     </modules>
 
     <repositories>

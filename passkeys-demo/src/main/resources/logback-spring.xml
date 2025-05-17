@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Console appender -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Enable detailed logging for WebAuthn4J -->
+    <logger name="com.webauthn4j" level="DEBUG"/>
+    <logger name="com.webauthn4j.validator" level="DEBUG"/>
+    <logger name="com.webauthn4j.authenticator" level="DEBUG"/>
+    <logger name="com.webauthn4j.converter" level="DEBUG"/>
+
+    <!-- Optional: Enable Spring Security debug logging -->
+    <logger name="org.springframework.security" level="DEBUG"/>
+    <logger name="org.springframework.web" level="INFO"/>
+
+    <!-- Optional: Show incoming HTTP requests -->
+    <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="DEBUG"/>
+
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
