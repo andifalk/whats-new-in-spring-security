@@ -1,0 +1,31 @@
+### Should fail with 403 (Forbidden), only admin (with role ADMIN) can access this endpoint
+http localhost:8080/api/accounts -a user:secret
+
+### Should be 200 (OK), admin (with role ADMIN) can access this endpoint
+http localhost:8080/api/accounts -a admin:secret
+
+### Should be 200 (OK), owner can access this endpoint
+http localhost:8080/api/accounts/1 -a user:secret
+
+### Should fail with 403 (Forbidden), admin is not owner and does not have role ACCOUNTANT
+http localhost:8080/api/accounts/1 -a admin:secret
+
+### Should be 200 (OK), accountant is not owner but has role ACCOUNTANT but cannot see account number
+http localhost:8080/api/accounts/1 -a accountant:secret
+
+### Should fail with 403 (Forbidden), user is not owner and does not have role ACCOUNTANT
+http localhost:8080/api/accounts/3 -a user:secret
+
+### Should be 200 (OK), accountant is owner and has role ACCOUNTANT
+http localhost:8080/api/accounts/3 -a accountant:secret
+
+### Should be 200 (OK), user is owner
+http POST localhost:8080/api/accounts/1 -a user:secret accountNumber=1111 owner=user balance=1500.0
+
+### Should be 403 (Forbidden), user is not owner
+http POST localhost:8080/api/accounts/3 -a user:secret accountNumber=1111 owner=test balance=1500.0
+
+###
+http localhost:8080/v3/api-docs
+
+

@@ -1,11 +1,8 @@
 package org.example.features.domain;
 
-import org.example.features.security.PreWriteBankAccount;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,15 +27,18 @@ public class BankAccountApi {
         return bankAccount != null ? ResponseEntity.ok(bankAccount) : ResponseEntity.notFound().build();
     }
 
-    @PreWriteBankAccount("#toSave")
-    BankAccount save(BankAccount toSave) {
+    @PostMapping
+    BankAccount save(@RequestBody BankAccount toSave) {
         return bankAccountService.save(toSave);
     }
 
-
-    @PreWriteBankAccount("#toUpdate")
-    BankAccount update(BankAccount toUpdate) {
-        return bankAccountService.save(toUpdate);
+    @PostMapping("/{id}")
+    ResponseEntity<String> update(@PathVariable("id") long id, @RequestBody BankAccount toUpdate) {
+        boolean updated = bankAccountService.update(id, toUpdate);
+        if (updated) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN.value()).build();
+        }
     }
-
 }

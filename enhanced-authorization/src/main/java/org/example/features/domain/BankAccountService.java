@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
+@Transactional(readOnly = true)
 @Service
 public class BankAccountService {
 
@@ -18,7 +18,7 @@ public class BankAccountService {
         this.bankAccountRepository = bankAccountRepository;
     }
 
-    @PreGetBankAccounts
+    @PreGetBankAccounts(role = "ADMIN")
     List<BankAccount> findAll() {
         return bankAccountRepository.findAll();
     }
@@ -29,12 +29,14 @@ public class BankAccountService {
     }
 
     @PreWriteBankAccount("#toSave")
+    @Transactional
     BankAccount save(BankAccount toSave) {
         return bankAccountRepository.save(toSave);
     }
 
     @PreWriteBankAccount("#toUpdate")
-    BankAccount update(BankAccount toUpdate) {
-        return bankAccountRepository.save(toUpdate);
+    @Transactional
+    boolean update(long id, BankAccount toUpdate) {
+        return bankAccountRepository.updateBankAccount(id, toUpdate.getBalance()) == 1;
     }
 }

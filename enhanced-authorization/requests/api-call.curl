@@ -1,0 +1,50 @@
+### Should fail with 403 (Forbidden), only admin (with role ADMIN) can access this endpoint
+curl -X GET --location "http://localhost:8080/api/accounts" \
+    --basic --user user:secret
+
+### Should be 200 (OK), admin (with role ADMIN) can access this endpoint
+curl -X GET --location "http://localhost:8080/api/accounts" \
+    --basic --user admin:secret | jq
+
+### Should be 200 (OK), owner can access this endpoint
+curl -X GET --location "http://localhost:8080/api/accounts/1" \
+    --basic --user user:secret | jq
+
+### Should fail with 403 (Forbidden), admin is not owner and does not have role ACCOUNTANT
+curl -X GET --location "http://localhost:8080/api/accounts/1" \
+    --basic --user admin:secret
+
+### Should be 200 (OK), accountant is not owner but has role ACCOUNTANT but cannot see account number
+curl -X GET --location "http://localhost:8080/api/accounts/1" \
+   --basic --user accountant:secret | jq
+
+### Should fail with 403 (Forbidden), user is not owner and does not have role ACCOUNTANT
+curl -X GET --location "http://localhost:8080/api/accounts/3" \
+    --basic --user user:secret
+
+### Should be 200 (OK), accountant is owner and has role ACCOUNTANT
+curl -X GET --location "http://localhost:8080/api/accounts/3" \
+    --basic --user accountant:secret | jq
+
+### Should be 200 (OK), user is owner
+curl -X POST --location "http://localhost:8080/api/accounts/1" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "accountNumber": "1111",
+          "owner": "user",
+          "balance": 1500.0
+        }' \
+    --basic --user user:secret
+
+### Should be 403 (Forbidden), user is not owner
+curl -X POST --location "http://localhost:8080/api/accounts/3" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "accountNumber": "1111",
+          "owner": "test",
+          "balance": 1500.0
+        }' \
+    --basic --user user:secret
+
+###
+curl -X GET --location "http://localhost:8080/v3/api-docs" | jq

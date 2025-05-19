@@ -45,7 +45,7 @@
     <modules>
         <module>how-spring-security-works</module>
         <module>spring-authorization-server</module>
-        <module>authorization-features</module>
+        <module>enhanced-authorization</module>
         <module>one-time-token-demo</module>
         <module>passkeys-demo</module>
         <module>token-exchange/token-exchange-client</module>

@@ -1,0 +1,54 @@
+### Should fail with 403 (Forbidden), only admin (with role ADMIN) can access this endpoint
+GET http://localhost:8080/api/accounts
+Authorization: Basic user secret
+
+### Should be 200 (OK), admin (with role ADMIN) can access this endpoint
+GET http://localhost:8080/api/accounts
+Authorization: Basic admin secret
+
+### Should be 200 (OK), owner can access this endpoint
+GET http://localhost:8080/api/accounts/1
+Authorization: Basic user secret
+
+### Should fail with 403 (Forbidden), admin is not owner and does not have role ACCOUNTANT
+GET http://localhost:8080/api/accounts/1
+Authorization: Basic admin secret
+
+### Should be 200 (OK), accountant is not owner but has role ACCOUNTANT but cannot see account number
+GET http://localhost:8080/api/accounts/1
+Authorization: Basic accountant secret
+
+### Should fail with 403 (Forbidden), user is not owner and does not have role ACCOUNTANT
+GET http://localhost:8080/api/accounts/3
+Authorization: Basic user secret
+
+### Should be 200 (OK), accountant is owner and has role ACCOUNTANT
+GET http://localhost:8080/api/accounts/3
+Authorization: Basic accountant secret
+
+### Should be 200 (OK), user is owner
+POST http://localhost:8080/api/accounts/1
+Authorization: Basic user secret
+Content-Type: application/json
+
+{
+  "accountNumber": "1111",
+  "owner": "user",
+  "balance": 1500.0
+}
+
+### Should be 403 (Forbidden), user is not owner
+POST http://localhost:8080/api/accounts/3
+Authorization: Basic user secret
+Content-Type: application/json
+
+{
+  "accountNumber": "1111",
+  "owner": "test",
+  "balance": 1500.0
+}
+
+### Should be 200 (OK), everybody can access this endpoint
+GET http://localhost:8080/v3/api-docs
+
+###
