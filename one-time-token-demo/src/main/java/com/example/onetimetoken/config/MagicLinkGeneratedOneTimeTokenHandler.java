@@ -43,7 +43,9 @@ public class MagicLinkGeneratedOneTimeTokenHandler implements OneTimeTokenGenera
         message.setFrom("secure@example.com");
         message.setSubject("Your Spring Security One Time Token");
         message.setText("Use the following link to sign in into the application: " + magicLink);
+        LOGGER.info("Sending Magic link via EMail to {}", oneTimeToken.getUsername());
         this.mailSender.send(message);
+        LOGGER.info("Sent Magic link via EMail to {}", oneTimeToken.getUsername());
         this.redirectHandler.handle(request, response, oneTimeToken);
     }
 }
