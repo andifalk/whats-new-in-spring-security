@@ -1,0 +1,10 @@
+### GET request to hello api
+GET http://localhost:8080/api/hello
+Authorization: Basic user password
+
+### GET request for admin
+GET http://localhost:8080/api/admin
+Authorization: Basic admin password
+
+### GET request for actuator
+GET http://localhost:8080/actuator/health

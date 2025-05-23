@@ -4,7 +4,7 @@ spring:
       security-filter-chain-validation
 logging:
   level:
-    org.springframework.security: debug
+    org.springframework.security: trace
 management:
   endpoints:
     web:

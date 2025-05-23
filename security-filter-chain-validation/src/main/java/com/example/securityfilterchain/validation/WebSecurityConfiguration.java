@@ -15,7 +15,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Profile("!invalid")
-@EnableWebSecurity
+@EnableWebSecurity(debug = false)
 @Configuration
 public class WebSecurityConfiguration {
 
