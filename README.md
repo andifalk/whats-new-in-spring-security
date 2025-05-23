@@ -19,4 +19,4 @@ This repo contains demo code to show how spring security works behind the scenes
 ## Slides
 
 * [Slides (Meetup 9/2024)](whats_new_in_spring_security.pdf)
-* [Slides (Spring I/O 2025)](#)
+* [Slides (Spring I/O 2025)](spring_security_talk_springio_2025.pdf)
