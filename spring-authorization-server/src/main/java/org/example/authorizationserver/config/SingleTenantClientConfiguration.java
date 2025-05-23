@@ -46,8 +46,14 @@ public class SingleTenantClientConfiguration {
                 })
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-                .redirectUri("http://127.0.0.1:8080/login/oauth2/code/messaging-client-oidc")
-                .postLogoutRedirectUri("http://127.0.0.1:8080/")
+                .redirectUris(u -> {
+                    u.add("http://127.0.0.1:8080/login/oauth2/code/messaging-client-oidc");
+                    u.add("http://localhost:8080/login/oauth2/code/messaging-client-oidc");
+                })
+                .postLogoutRedirectUris(u -> {
+                    u.add("http://127.0.0.1:8080");
+                    u.add("http://localhost:8080");
+                })
                 .scope(OidcScopes.OPENID)
                 .scope(OidcScopes.PROFILE)
                 .scope(OidcScopes.EMAIL)

@@ -21,7 +21,7 @@ public class ClientApi {
     }
 
     @GetMapping("/hello")
-    public String hello(@RegisteredOAuth2AuthorizedClient("messaging-client-oidc") OAuth2AuthorizedClient oauth2AuthorizedClient) {
+    public String hello(@RegisteredOAuth2AuthorizedClient(registrationId = "messaging-client-oidc") OAuth2AuthorizedClient oauth2AuthorizedClient) {
 
         LOG.info("Got authenticated OAuth2 client {}", oauth2AuthorizedClient.getClientRegistration().getClientId());
 
