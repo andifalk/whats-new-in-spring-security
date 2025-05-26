@@ -2,8 +2,8 @@
 
 This repo contains demo code to show how spring security works behind the scenes and what is new in:
 
-* Spring Security 6.3 & 6.4 & 6.5
-* Spring Authorization Server 1.3 & 1.4 & 1.5
+* Spring Security Versions 6.3 & 6.4 & 6.5
+* Spring Authorization Server Versions 1.3 & 1.4 & 1.5
 
 ## Demos
 
@@ -15,6 +15,7 @@ This repo contains demo code to show how spring security works behind the scenes
 * [Passkeys Demo](passkeys-demo/README.md)
 * [OAuth2 Token Exchange Demo](token-exchange/README.md)
 * [Spring Authorization Server](/spring-authorization-server/README.md)
+* To be continued...
 
 ## Slides
 
