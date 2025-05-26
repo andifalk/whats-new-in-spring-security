@@ -17,7 +17,7 @@ It includes three modules:
 
 The scenario is as follows:
 
-1. The client application (http://localhost:8080) requests an access token from the authorization
+1. The client application (http://localhost:8080/client) requests an access token from the authorization
    server (http://localhost:9000).
 2. The client application uses the access token to call the first resource server (http://localhost:9091).
 3. The first resource server performs a token exchange with the authorization server (http://localhost:9000) to get a

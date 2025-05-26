@@ -5,12 +5,12 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9000
           audiences: http://localhost:9092/api/messages
+          jwk-set-uri: http://localhost:9000/oauth2/jwks
 
 server:
   port: 9092
 
 logging:
   level:
-    org.springframework.security: debug
+    org.springframework.security: trace

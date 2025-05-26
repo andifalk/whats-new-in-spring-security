@@ -10,8 +10,11 @@ spring:
             client-id: messaging-client
             client-authentication-method: none
             authorization-grant-type: authorization_code
-            redirect-uri: "http://localhost:8080/login/oauth2/code/{registrationId}"
-            scope: openid, profile
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - profile
+              - email
             client-name: messaging-client-oidc
         provider:
           spring:
@@ -19,7 +22,9 @@ spring:
 
 server:
   port: 8080
+  servlet:
+    context-path: /client
 
 logging:
   level:
-    org.springframework.security: debug
+    org.springframework.security: trace

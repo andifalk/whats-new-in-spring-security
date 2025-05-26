@@ -52,6 +52,6 @@ public class MessageApi {
                 .retrieve();
         ResponseEntity<String> responseEntity = responseSpec.toEntity(String.class);
         LOG.info("Successfully called the target resource server with exchanged token");
-        return "I am a message from the token exchange resource server with " + responseEntity.getBody();
+        return "I am the token exchange resource server with a message from the target resource server: \n" + responseEntity.getBody();
     }
 }

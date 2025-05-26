@@ -18,6 +18,6 @@ public class MessageApi {
         LOG.info("Called the target resource server with exchanged token  subject {} and audience {}",
                 jwtAuthentication.getToken().getSubject(),
                 jwtAuthentication.getToken().getAudience());
-        return "I am a message from the target resource server";
+        return "A big hello from the target resource server";
     }
 }
