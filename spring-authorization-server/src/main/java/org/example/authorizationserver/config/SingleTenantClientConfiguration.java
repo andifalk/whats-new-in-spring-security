@@ -32,6 +32,8 @@ public class SingleTenantClientConfiguration {
 
     public static final String TOKEN_EXCHANGE_CLIENT = "token-exchange-client";
     public static final String MESSAGING_CLIENT = "messaging-client";
+    public static final String CLIENT_CREDENTIALS_CLIENT = "client-credentials-client";
+
     private static final Logger LOG = LoggerFactory.getLogger(SingleTenantClientConfiguration.class);
 
     @Bean
@@ -60,6 +62,20 @@ public class SingleTenantClientConfiguration {
                 .clientSettings(ClientSettings.builder().requireAuthorizationConsent(false).requireProofKey(true).build())
                 .build();
 
+        RegisteredClient clientCredentialsClient = RegisteredClient.withId(UUID.randomUUID().toString())
+                .clientId(CLIENT_CREDENTIALS_CLIENT)
+                .clientSecret("{noop}client_credentials_secret")
+                .clientAuthenticationMethods(m -> {
+                    m.add(ClientAuthenticationMethod.CLIENT_SECRET_BASIC);
+                    m.add(ClientAuthenticationMethod.CLIENT_SECRET_POST);
+                })
+                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+                .scope("openid")
+                .tokenSettings(TokenSettings.builder()
+                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED)
+                        .accessTokenTimeToLive(Duration.ofMinutes(30)).build())
+                .build();
+
         RegisteredClient tokenExchangeClient = RegisteredClient.withId(UUID.randomUUID().toString())
                 .clientId(TOKEN_EXCHANGE_CLIENT)
                 .clientSecret("{noop}exchange_secret")
@@ -76,9 +92,10 @@ public class SingleTenantClientConfiguration {
                 .build();
 
         LOG.info("Registering public OIDC Client: {}", publicOidcClient);
+        LOG.info("Registering Client Credentials Client: {}", clientCredentialsClient);
         LOG.info("Registering Token Exchange Client: {}", tokenExchangeClient);
 
-        return new InMemoryRegisteredClientRepository(publicOidcClient, tokenExchangeClient);
+        return new InMemoryRegisteredClientRepository(publicOidcClient, clientCredentialsClient, tokenExchangeClient);
     }
 
     @Bean

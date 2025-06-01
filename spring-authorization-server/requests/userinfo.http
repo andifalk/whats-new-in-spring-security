@@ -10,7 +10,7 @@ Authorization: Bearer {{$auth.token("issuer1")}}
 GET {{auth-server-url}}/issuer2/userinfo
 Authorization: Bearer {{$auth.token("issuer2")}}
 
-### Token exchange request
+### Token exchange request (impersonation)
 POST {{auth-server-url}}/oauth2/token
 Content-Type: application/x-www-form-urlencoded
 Authorization: Basic token-exchange-client exchange_secret
@@ -20,3 +20,18 @@ subject_token = {{$auth.token("standard")}} &
 subject_token_type = urn:ietf:params:oauth:token-type:access_token &
 requested_token_type = urn:ietf:params:oauth:token-type:access_token &
 scope = message.read message.write
+
+### Token exchange request (delegation)
+POST {{auth-server-url}}/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic token-exchange-client exchange_secret
+
+grant_type = urn:ietf:params:oauth:grant-type:token-exchange &
+subject_token = {{$auth.token("standard")}} &
+subject_token_type = urn:ietf:params:oauth:token-type:access_token &
+actor_token = {{$auth.token("clientcred")}} &
+actor_token_type = urn:ietf:params:oauth:token-type:access_token &
+requested_token_type = urn:ietf:params:oauth:token-type:access_token &
+scope = message.read message.write
+
+###
