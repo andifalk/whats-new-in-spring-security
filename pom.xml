@@ -53,6 +53,7 @@
         <module>token-exchange/target-resource-server</module>
         <module>compromised-password-checker</module>
         <module>security-filter-chain-validation</module>
+        <module>multifactor-authentication</module>
     </modules>
 
     <repositories>
